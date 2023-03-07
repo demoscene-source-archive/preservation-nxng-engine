@@ -4,8 +4,13 @@ The Syndrome 3D engine
 :warning: This is LEGACY software. This source code is shared for historical purposes.<br>
 _The C++ source is most probably incomplete._
 
-## nXng by [Emmanuel JULIEN](https://github.com/ejulien/), 1999~2000
+## nXng by [Emmanuel JULIEN](https://github.com/ejulien/), 1999~2000<br>
+<br>
 
+![](img/nx-gui-001.png)
+![](img/nx-gui-002.png)
+
+<br>
 ## Table of Content
 
 1) About
