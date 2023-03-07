@@ -1,0 +1,314 @@
+<html>
+<head>
+<title>nXs3 - Syndrome 3d Engine - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="3d-engine lightwave realtime replayer syndrome xbarr">
+<meta name="description" content="Official documentation of nXs3 -The Syndrome 3d engine - by xBaRr alias Emmanuel JULIEN 2000 All Rights Reserved.">
+</head>
+
+<body bgcolor="#C4A8A4" link="#2C6782" vlink="#666666" alink="#CCFFCC">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#000000"> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td valign="top" bgcolor="#000000"> 
+      <div align="right"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><a name="about"></a><font size="+1" color="#FFFFFF">1) 
+        Realtime vs. Raytraced renderers:</font></i></b></font></div>
+    </td>
+    <td valign="top" bgcolor="#A5B5C4">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#a5b5c4"> 
+    <td valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <i><b>nXng</b></i> is a realtime 3D engine. What this mean is that when 
+        you render a picture in Lightwave it can take several minutes to complete. 
+        When running <i><b>nXng</b></i> each picture you see is rendered on the 
+        fly so, each frame must take a very short amount of time to render if 
+        we want the animation to work. Of course this imply a very important reduction 
+        of image quality... Speed versus Quality... ):<br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"> </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><b>1.0] 
+        Rendering considerations &amp; limitations:</b><br>
+        <br>
+        There are many things that get dropped out from Lightwave render to nX 
+        render, among these:<br>
+        - Phong shading is no more possible only flat or gouraud shading are fast 
+        enough to be of use in realtime. However true static phong shading is 
+        available via Lightmaps,<br>
+        - Dynamic shadows are also very time consuming... therefore realtime 3d 
+        engine almost never include support for them. nX uses Lightmaps to reduce 
+        the gap beetwen realtime and rendered pictures. With lightmaps very realistic 
+        static shadows can be reproduced along with true phong shading.<br>
+        - Edge antialiasing is also unsupported in nX. This is subject to change 
+        soon... </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">Apart 
+        from these major lacks nXng has a powerful implementation of all available 
+        realtime techniques from today's 3D hardware. So you will almost always 
+        get a render very similar of what you could expect if you keep in mind 
+        the above restrictions.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">nXng 
+        will very soon get its software renderer back. It won't be a hardware 
+        emulation anymore but a realtime raytracer! Of course this is kinda slow 
+        but has CPUs gets faster and faster this is the way to go...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><b>1.1] 
+        Automatic scene sizing &amp; Z-Buffering problems</b><br>
+        <br>
+        3D hardware now always support Z-buffering to enable realistic polygon 
+        intersection to be accurately reproduced. However for speed considerations 
+        this Z-buffer has hardware-defined limitations. Z-Buffer usually fits 
+        in 16 or 32 bit on common 3D accelerators. For 3D hardware using 32 bit 
+        Z-buffer there should be no problem with automatic scene sizing. But 16 
+        Z-buffer may exhibit flickering polygons or crappy polygons intersections. 
+        To determine if your hardware has 16 or 32 bit Z-buffer support just launch 
+        a scene and exit it then look in nX Console the Z-buffer format that was 
+        used for replaying.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+        following also apply to Z-buffer problems:</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><b>To 
+        avoid potential problems with Zcutting, the scene is scaled at load time 
+        to conform with it GridSize setting. If you encounter Z-Clipping problems, 
+        try modifying the Scene's GridSize in Layout! OPTIONS Menu / Layout View 
+        / Grid Square Size.<br>
+        Watch your scene in Layout because if this problem arise in nX it is most 
+        likely to be the same in Layout.<br>
+        Also sometimes extreme values (like 1Gm) can make the BoundingBox system 
+        go nuts making loads of polygons weirdly getting all over the screen.</b> 
+        <br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"> </font></p>
+    </td>
+    <td valign="top" bgcolor="#000000"> 
+      <p align="center"><img src="sct_lm0.jpg" width="300" height="216"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Lightmaps dramatically improve visual quality -</font></i> </p>
+      <p align="center"><img src="sct_lm1.jpg" width="320" height="240"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Static shadows can be accurately reproduced -</font></i> </p>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td valign="top" bgcolor="#000000"> 
+      <div align="right"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><a name="about"></a><font size="+1" color="#FFFFFF">2) 
+        Supported Lightwave features:</font></i></b></font></div>
+    </td>
+    <td valign="top" bgcolor="#A5B5C4">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#a5b5c4"> 
+    <td valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="-1"><b><font face="Arial, Helvetica, sans-serif">2.0] 
+        LW Scenes,</font></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>nXng</i></b> 
+        has native Lightwave scene support so it handles almost all commonly used 
+        features of the Lightwave scene object. nX directly reads objects, cameras, 
+        motions and stuff from the LWS you provide.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">Motions and envelops 
+        are reproduced perfectly in nX with support for 'End Behavior' settings 
+        (Reset is interpreted as Stop).<br>
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b>2.1] LW Objects,</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">nX gets infos on 
+        objects in native LWO format. Here is the list of what is supported and 
+        interpreted in the engine:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">- Polygonal geometry 
+        (with a maximum of 333 vertice per polygon, truncation is performed if 
+        overflow),<br>
+        - Pivot point,<br>
+        - Surfaces (please refer to the 'LW Surfaces' section).</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">When loaded in a 
+        scene many features are attached to the object:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">- Object dissolve 
+        envelop,<br>
+        - Object metamorph (no multi-targeting) envelop,<br>
+        - Motion,<br>
+        - Parenting,<br>
+        - Targeting,<br>
+        - Unseen by rays (Lightmaps only),<br>
+        - Cast shadows (Lightmaps only).</font> </p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> <b>2.2] LW Surfaces,</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">LW surfaces determine 
+        how a particular set of polygons will render on screen, nX correctly interpret 
+        these values in LW surfaces:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">- Color texture level 
+        [any mapping type],<br>
+        - Reflectivity texture level [envirronment mapping],</font><font face="Arial, Helvetica, sans-serif"><br>
+        <font size="-1">- Transparency texture level [any mapping type],<br>
+        - Additive blending,<br>
+        - Smoothing (with max smoothing angle),<br>
+        - Double sided,<br>
+        - Transparency percent,<br>
+        - Diffuse percent,<br>
+        - Specular percent and glosiness power,<br>
+        - Luminosity percent,<br>
+        - Color filter (for Lightmaps only),<br>
+        - Sharp terminator (used to specify flat shading),<br>
+        - Render outlines only check,</font></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><i>Please note that 
+        all these features can be combined together and thus allow very complex 
+        rendering to be performed!</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b>2.3] LW Lights,</b><br>
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">Nx can currently 
+        handle ambient, point, spot and linear lights both in realtime and lightmapped 
+        renders.<br>
+        These lights can have the following features activated:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">- Light intensity 
+        with envelop,<br>
+        - Intensity falloff with envelop,<br>
+        - Spot cone angle with envelop,<br>
+        - Spot soft edge angle with envelop,<br>
+        - Lens flare with intensity and intensity envelop,<br>
+        - Shadow type (Lightmaps only).<br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <b>2.4] Misc. features,</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">Camera is interpreted 
+        with respect to its viewport size and FOV (with envelop).<br>
+        nX also has a custom Scene dissolve.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> <b>2.5] Displacement 
+        PLUGIN: Morph-GIZMO,</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">nX supports displacement 
+        plugin 'Morph-Gizmo'.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b> 2.6] Displacement 
+        PLUGIN: Motion Designer MD-Plug. </b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1">nX supports displacement 
+        plugin 'MDPlug' from Motion Designer version 1.0 upto version 2.01.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif" size="-1"><i><b><font size="+2">Bonus] 
+        HOW TO SETUP A SURFACE IN LIGHTWAVE</font></b></i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>SELECTING 
+        A SHADING MODE</i></b><br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        Default nX behavior is to not shade any polygons. Therefore if you want 
+        your surface to be flat shaded then you must activate 'SHARP TERMINATOR' 
+        in surface panel.<br>
+        Gouraud shading is enabled via the 'SMOOTHING' button in surface panel.<br>
+        --&gt; SMOOTHING and FLAT SHADING are mutually exclusive! Preference is 
+        given to Flat.<br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <b><i>ADDING TEXTURES TO THE SURFACE</i><br>
+        </b></font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        All supported textures are activated using the 'T' button for the corresponding 
+        attribute. So, to add a color texture map one would add it via the 'T' 
+        button to the right of the 'Surface Color' field in surface panel.<br>
+        The same apply to other supported levels.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> <i>Supported texture 
+        levels:</i><br>
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> - Surface Color 
+        (MAPPING),</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> - Reflectivity (EVMAP),<br>
+        This add an envirronment mapping texture to the surface.<br>
+        One most correct way to specify a reflectivity map is to set<br>
+        the reflection percentage to a non 0 value and specifying the<br>
+        texture in reflection image panel. Both way are supported.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> - Transparency (ALPHATEX),</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> - Bump (BUMP)<br>
+        WARNING: You must have an evmap defined for bump mapping!<br>
+        If no evmap was defined when using bump mapping the default nX evmap will 
+        be used.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> All textures levels 
+        are fully UV independent. This mean you can use any mode of<br>
+        mapping for each level, for example MAPPING via 'Planar Image Map' + EVMAP.<br>
+        Since v1.7, some Fractal Noise and Crumple procedural textures are supported.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <b><i><a name="dbtex"></a>EXTENDED SURFACE RENDERSTATES</i></b><br>
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> In order to have 
+        a more complete control on the rendering of surfaces nX uses<br>
+        Surface name keywords. This mean that when you type (anywhere) in a surface 
+        name<br>
+        one of the following keywords you'll turn on its corresponding behavior:<br>
+        (You can, of course, combinate them ...)</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> <i>Here is a list 
+        of nX keywords:</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> [BUMP]<br>
+        -&gt; old but still supported method to specify bump mapping,<br>
+        <br>
+        [ZBUFFER]<br>
+        -&gt; specify that surface is to be Zbuffered,<br>
+        <br>
+        [WM]<br>
+        -&gt; toggle wide map on,<br>
+        <br>
+        [ADDEVMAP],<b> If your double-texture mapping looks too dark try this 
+        one</b><br>
+        -&gt; changes the way nX combine color and reflection maps from<br>
+        multiply to additive when using multi-texturing.<br>
+        HINT: try it if you find your COLORMAP+EVMAP too dark...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> The following are 
+        not legacy nX keywords but were introduced to be<br>
+        compatible with Odin/Gods's G3E:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> LGT_x[+y][+...]<br>
+        -&gt; restrict lightning computations to lights n&deg;x,y,...,<br>
+        CHROMA<br>
+        -&gt; specify chroma keying (black channel) for surface<br>
+        (you should use alpha maps instead)</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <i>Note:</i> Of course, make sure you did not use one of these keywords 
+        if one<br>
+        of your surfaces is not behaving the way you were expecting.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> <b><i>USING ALPHA 
+        AND TRANSPARENCIES</i></b><br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        You can add some alpha shading or transparency to your surface in many 
+        different<br>
+        ways. nX supports ALPHATEX, additive shading and surface's transparency 
+        percentage to<br>
+        perform alpha blending.<br>
+        You can indirectly alpha shade your surface using the 'Object Dissolve'.</font><font face="Arial, Helvetica, sans-serif" size="-1"> 
+        <br>
+        </font></p>
+    </td>
+    <td valign="top" bgcolor="#000000"> 
+      <p align="center"><img src="sct_ntr.jpg" width="320" height="240"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Textures from this scene by Nitryk/COCOON -</font></i> </p>
+      <p align="center"><img src="sct_lgd.jpg" width="320" height="181"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Transparency textures &amp; 1024x1024 textures-</font></i> </p>
+      <p align="center"><img src="sct_jpn.jpg" width="320" height="240"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Unlimited parenting and dissolve envelops (textures by Nitryk) -</font></i> 
+      </p>
+      <p align="center"><img src="sct_md.jpg" width="320" height="240"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Realtime physics trough Motion Designer -</font></i> </p>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td valign="top" bgcolor="#000000" width="71%"> 
+      <div align="right"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><a name="about"></a><font size="+1" color="#FFFFFF">3) 
+        nX specific features:</font></i></b></font></div>
+    </td>
+    <td valign="top" bgcolor="#A5B5C4" width="29%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#a5b5c4"> 
+    <td valign="top" width="71%"> 
+      <p align="center"><font face="Arial, Helvetica, sans-serif" size="-1"><i><b><font size="+2">SECTION 
+        TO BE COMPLETED</font></b></i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"> <b><i>USING 
+        LIGHTMAPS:</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>USING PARTICLE 
+        EMITERS:</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>USING OBJECT 
+        EFFECTORS:</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>USING ISOSURFACES: 
+        </i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><b><i>USING MOTION 
+        TRAILS:</i></b></font></p>
+    </td>
+    <td valign="top" width="29%" bgcolor="#000000"> 
+      <div align="center"><img src="sct_iso.jpg" width="293" height="222"><br>
+        <i><font color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif" size="-3">- 
+        Iso surfaces-</font></i> </div>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,835 @@
+					----------------------------------------
+
+				  nX (S3 project) by Emmanuel JULIEN, 1999~2000
+							  Code: xBaRr/Syndrome
+
+							'The Syndrome 3D engine'
+
+								xbarr@pingoo.com
+							http://xbarr@planet-d.net
+						   http://syndrome@planet-d.net
+
+					----------------------------------------
+
+						First build:
+							12/09/1998 (x3)
+						Last released version:
+							5.24.99 (X32), 1.7c (nXs3)
+
+					----------------------------------------
+
+
+
+						Table of Content:
+						-----------------
+
+						1) About,
+						2) Rules and Things to know,
+						3) Restrictions and loosy stuff,
+						4) Major features,
+						5) The 'nXs3.ini' file,
+						6) Setting up surface shaders,
+						7) History,
+						8) The Replay engine and MOA,
+						9) Last Tips,
+						A) Greets.
+
+
+1) ABOUT:
+---------
+
+		nXs3 is a NEWTEK's Lightwave based demo 3D-Engine.
+		It barely works like any other 3D-Engine.
+
+		It is pure software 3d-engine. Transformations/clippings/lightning are hand written
+		the only calls made to D3D when using hardware rasterizer are SETRENDERSTATE and
+		DRAWPRIMITIVE! And yes I feel its lame to use D3D's clipping/lightning/bones or
+		whatever (in a demo) sometimes without even knowing how it is done! ):
+
+		Demos that use nX:
+		------------------
+			- Dash (Condense) uses x3 [http:\\condense.planet-d.net],
+			- LTP3 Intro-Invitation (Syndrome) uses X32 [http:\\syndrome.planet-d.net],
+			- FreeStyle (Condense & Syndrome) uses nX [http:\\syndrome.planet-d.net],
+			- and more to come (: ...
+
+
+		Requirements:
+		-------------
+
+				- Pentium class processor (MMX is NOT a plus),
+				- DirectX 7.0 with at least a DirectX compatible graphic card,
+
+
+2) RULES AND THINGS TO KNOW:
+----------------------------
+
+	- WINDOWS IS CRAP,
+
+	- gAudio MP3 Library is available for FREE non-commercial use here:
+							http://www.idf.net/gods
+
+	- A scene !MUST NOT! have any of its objects first appearing with this motion step:
+		Position X, Y & Z: -9999999999,123456 m
+		Angle H, P & B: -9999999999,123456 °
+		Scale X, Y & Z: -9999999999,123456 *
+		If you fail to respect this rule then nX behavior is not predictable!
+		(even if there is only one chance on infinity you make this ! (8)
+
+	- !!! There are reserved keywords in surface's name !!!:
+		See the SETTING UP THE SURFACE SHADERS section for a complete list.
+
+	- TEXTURE REPEAT is VERY IMPORTANT!
+		nX will surely crash if you intend to wrap a texture without setting the appropriate
+		Surface's flag !!! BEWARE ALSO specifying texture wrap when unused is a MEMORY HOLE !!!
+		In order to wrap texture with software renderer nX must stretch EACH wrapping textures
+		to 256x256 ! (You might sometimes want to use this option to increase linear mapper
+		precision but I really do not recommand doing random wrapping settings!)
+		NOTE : This does not apply when rendering via Direct3D.
+
+	- Troughout this document MOA will be refered to as motion overdrawing,
+
+	- If you find some problems with truemap textured D3D surfaces or flashing/jerky lightning
+	  try another scene size!
+
+	- There is NO clipping bugs. Disappearing polygons are because of MOA being calculated every
+	  8 frames, if you want no replay bug then update MOA in 1x mode <but have a good night then (;>,
+
+	- MOA SHOULD BE updated whenever the scene changes BUT sometimes nX
+	  won't detect scenes changes and this may result in HEAVY PLAYBACK BUGS!
+	  In this case just check the 'update MOA' option.
+
+	- Last but not least : try to catch an AMIGA and get a life.
+
+
+
+3) RESTRICTIONS AND LOOSY STUFF:
+--------------------------------
+
+	- Supported texture formats are in prefered order TARGA, JPEG, BMP and IFF.
+	  TARGA, BMP and IFF code are originals. JPEG is based on IJG distribution.
+
+	- When using precalculated motion the number of face in scene must not exceed 65535,
+	
+	_ Texture width is limited to 256x256 pixels in ALL rendering type IF wrapping otherwise
+	  specify [WM] in surface name to activate wide map support for surface (upto 65535x65535).
+	  WARNING!: Wide texture repeat WILL crash!
+	  But any size lower than 256x256 is allowed (even non-2^x size) with wrapping,
+	  Direct3D has hardware texture size limitation (accelerator dependent).
+		Note: A 1024x1024 texture fill upto 4mo! think about it and don't even think about CPU-caching datas (;
+			  If a rendering type does not have WIDE support you'll get a warning at load time.
+
+	- Because of the way nX calculate UV mapping coordinate, the LIGHTWAVE's texture velocity behavior cannot
+	  be reproduced. Only x and y component are took in account and added to u and v texture components.
+		i.e: if you specify an x velocity of 1.0 then the texture seen from front will scroll left
+			 because its U (x in texture space) will be increased each frame.
+	  Mmmh... the best i think is to try and see {-; ...
+
+
+
+4) MAJOR FEATURES:
+------------------
+
+
+	Engine:
+
+		- Internal RGB888 routines,
+		- Full Float32 FPU 3D calculations,
+		- Light color support for all types,
+		- Fully independent texture levels (center, size & velocity),
+		- Scalable and morphable particle objects,
+		- Dynamic shading based upon all lights in scene,
+		- Fully parametrable lightning models on a per-surface basis,
+		  (specified by keyword 'LGT_x[+x][+...]' in surface name -G3E compatible-)
+		  NOTE : specifying LGT is only needed when restricting surface lightning to specific lights,
+		- Diffuse and Specular percentage variable,
+		- Specular and Glossiness pow support for all shaded rendering methods,
+		- Extra texture effects for all rendering type,
+		- Lightning speed load engine (even faster than Lightwave!),
+		- Works both windowed/fullscreen either soft or d3d.
+
+	Lightwave functions compatibility level:
+
+		- 'Planar image map', 'Cubic image map', 'Cylindrical image map' support,
+		- LIGHTWAVE's 'MetaMorph' support (vertices + normals),
+		- MORPH-GIZMO (extension to metamorph for multiple targets),
+		- Alpha transparency (256 levels for both software & hardware),
+		- Object dissolve fully supported (correctly affect transparency),
+		- Transparency texture level support,
+		- LIGHTWAVE's 'MaxSmoothingAngle' support,
+		- Camera focal envellop,
+		- Support for unlimited lights: (with all envellop supported including cone angle&edge angle ones)
+			Ambient light intensity,
+			Distant Light,
+			Point Light,
+			Spot light,
+			Lens flare support.
+		- Null object,
+		- Inverse Kinematik (but not ala Lightwave so it is quite unusable for now),
+		- Parent objects,
+		- Target object,
+		- Scale and pivot point,
+		- Support motion/envelop End Behavior (Reset is interpreted as Stop),
+
+	Extra functions:
+
+		- Fully configurable spark emiters,
+
+	Software rasterizer:
+
+		- Polygonal rasterizer/clippers (up to 333 edges),
+		- Sub-pixel/Sub-texel accurate polydrawer with FLOAT32 precision,
+		- GENERIC SOFTWARE RASTERIZER
+		  Software has support for ALL render types!
+		  Just try MAPPING + EVMAP + BUMP + ALPHA TEXTURE + ADDITIVE + GOURAUD it WORKS! (((:
+		  plus 30 custom optimized cases (most common ones).
+		- Software colored linear fog,
+		- Software selective Z-Buffer (32 bits), must specify '[ZBUFFER]' in surface name to activate,
+		- Texture Width & Height wrapping (UV Wrap),
+
+	D3D rasterizer:
+
+		- Uses the texture management feature of D3D (DirectX 6+),
+		- ZBuffer automatically select largest Zbuffer type available,
+		- CAPS based rendering taking advantage of multipass/multitexture capable accelerators,
+
+
+
+5) THE 'nXs3.ini' FILE:
+-----------------------
+
+	In case you don't have it, simply cut and paste the following block in a file named
+	'nXs3.ini' in program directory:
+
+	[--------------- CUT FROM HERE ---------------]
+
+	INI file for nXs3 (Syndrome 3D Engine)
+	--------------------------------------
+
+	' Set the path of your lightwave BASE directory (i.e: the directory
+	' containing your programs|plugins|images|scenes|objects folders NOT
+	' the directory containing the .exe (unless you moved them from their
+	' original folders), In most case this is 'c:\newtek\'
+
+	[NEWTEK]
+	c:\newtek\
+
+	[-------------- END OF INI FILE --------------]
+
+
+6) SETTING UP THE SURFACE SHADERS:
+----------------------------------
+
+
+		// SELECTING A SHADING MODE
+		///////////////////////////
+
+
+		Default nX behavior is to not shade any polygons. Therefore if you want your
+	surface to be flat shaded then you must activate 'SHARP TERMINATOR' in surface panel.
+	Gouraud shading is enabled via the 'SMOOTHING' button in surface panel.
+		--> SMOOTHING and FLAT SHADING are mutually exclusive! Preference is given to Flat.
+
+
+		// ADDING TEXTURES TO THE SURFACE
+		/////////////////////////////////
+
+
+		All supported textures are activated using the 'T' button for the corresponding
+	attribute. So, to add a color texture map one would add it via the 'T' button to the
+	right of the 'Surface Color' field in surface panel.
+		The same apply to other supported levels.
+
+		Supported texture levels:
+		-------------------------
+
+			- Surface Color (MAPPING),
+
+			- Reflectivity (EVMAP),
+				This add an envirronment mapping texture to the surface.
+				One most correct way to specify a reflectivity map is to set
+				the reflection percentage to a non 0 value and specifying the
+				texture in reflection image panel. Both way are supported.
+
+			- Transparency (ALPHATEX),
+
+			- Bump (BUMP)
+				WARNING: You must have an evmap defined for bump mapping!
+
+		All textures levels are fully UV independent. This mean you can use any mode of
+	mapping for each level, for example MAPPING via 'Planar Image Map' + EVMAP.
+	Since v1.7, some Fractal Noise and Crumple procedural textures are supported.
+
+
+		// EXTENDED SURFACE RENDERSTATES
+		////////////////////////////////
+
+		In order to have a more complete control on the rendering of surfaces nX uses
+	Surface name keywords. This mean that when you type (anywhere) in a surface name
+	one of the following keywords you'll turn on its corresponding behavior:
+		(You can, of course, combinate them ...)
+
+		Here is a list of nX keywords:
+
+			[BUMP]
+				-> old but still supported method to specify bump mapping,
+			[ZBUFFER]
+				-> specify that surface is to be Zbuffered,
+			[WM]
+				-> toggle wide map on,
+			[ADDEVMAP]
+				-> changes the way nX combine color and reflection maps from
+				   multiply to additive when using multi-texturing.
+				   HINT: try it if you find your COLORMAP+EVMAP too dark...
+
+		The following are not legacy nX keywords but were introduced to be
+		compatible with Odin/Gods's G3E:
+
+			LGT_x[+y][+...]
+				-> restrict lightning computations to lights n°x,y,...,
+			CHROMA
+				-> specify chroma keying (black channel) for surface
+				  (you should use alpha maps instead)
+
+
+		Note: Of course, make sure you did not use one of these keywords if one
+			  of your surfaces is not behaving the way you were expecting.
+
+		// USING ALPHA AND TRANSPARENCIES
+		/////////////////////////////////
+
+
+		You can add some alpha shading or transparency to your surface in many different
+	ways. nX support ALPHATEX, additive shading and surface's transparency percentage to
+	perform alpha shading.
+		You can indirectly alpha shade your surface using the 'Object Dissolve'.
+
+		Note: ALPHATEX and transparency coef are mutually exclusive in piXel!
+			  Preference goes to ALPHATEX.
+
+
+		// piXel! PERFORMANCE CONSIDERATIONS
+		////////////////////////////////////
+
+		nX's piXel! can handle all combinations of the rendertypes above.
+	However to do this each polygon must get trought a generic rasterizer wich is
+	pretty slow. That's why for the most common (and far less common) shading types
+	nX includes assembly optimised scanline routines.
+		You should always try to use OPTIMIZED calls whenever possible!
+		Here is the list of OPTIMIZED calls:
+
+				FLAT (alpha)
+				FLAT + LIGHTSOURCE (alpha)
+				GOURAUD (alpha)
+				MAPPING (alpha/wide)
+				MAPPING + LIGTHSOURCE
+				EVMAP (alpha/wide)
+				MAPPING PERSPECTIVE (wide)
+				MAPPING PERSPECTIVE + GOURAUD
+				MAPPING PERSPECTIVE + ADDITIVE
+
+				MAPPING + GOURAUD
+				EVMAP + GOURAUD
+				EVMAP + BUMP
+
+				ALPHATEX (wide)
+				ALPHATEX + LIGHTSOURCE (wide)
+				ALPHATEX + MAPPING
+				ALPHATEX + EVMAP
+
+				ADDITIVE + FLAT
+				MAPPING + ADDITIVE (alpha/wide)
+				EVMAP + ADDITIVE (alpha/wide)
+
+				Total: 32 custom rasterizers
+
+		Note: Optimized calls are automatically took in most case.
+	For example if you have MAPPING + BUMP in a scene and you want to dissolve it then
+	nX will use the optimized call as long as there is no alpha shading. But when the
+	alpha get used optimized call will fail and default to generic rasterizer.
+
+		Since there is many individually optimized calls and that generic rasterizer is
+	not AWFULLY slow. You might not have to worry about optimizing your scenes. But
+	of course hardware is faster (;
+
+		Do not forget to watch perspective correct renders! nX optimized calls only have
+	support for MAPPING + PERSPECTIVE! So, DO NOT PERSPECTIVE EVERY SURFACES!
+
+		Note: Generic rasterizer cannot WIDEMAP.
+
+
+7) HISTORY:
+-----------
+
+			v1.7c:
+				- Added the EXTENDED SURFACE RENDERSTATES section to this doc,
+				- [ADDEVMAP] surface keyword added to allow COLORMAP + EVMAP to
+				  be blended using ADDITIVE instead of the default MULTIPLY,
+				- Fixed an odd bug in envelops, should fix a lot of weird bugs (;
+				- Missing objects no more crash the engine,
+				- Missing filename is always given in error messages [:,
+				- Relooked the GUI..
+
+			v1.7b:
+				- Better memory manager, greatly improved memory requirement!
+				- Rewrote software sub pixel/texel corrections... gave a little speedup,
+				- Boost in D3D (again!? yes again... [: but a minor one),
+				- Improved distribution look (:,
+				- Fixed a minor bug with POLS reader... hmm very minor (:
+					nX replays 100% of Lightwave's samples!
+				- Speedups in D3D,
+				- Color conversions are ok. Now 32bpp to 15/16/24 works,
+				- Fixed a crash with very and fucking old drivers reporting max texture size of 0!,
+				- Reintroduced specular in d3d. Software soon, but i'm laaaaazy as usual (:,
+				- Memory hole is past... [:
+				- Colored fog in soft is back, fog limits supported (envellop/fixed)...
+				- Added the [NOLIGHT] surface name keyword in case you're using the 'Shade ON'
+				  option,
+
+			v1.7:
+				- Z-buffer optimized on a per-frame basis,
+				- Removed a silly bug in MOA... now MOA always works! (:
+				- Greatly improved render state setup logic... old accelerators should
+				  work really better now!,
+				- Woops! Preca focal envellop support was not up-to-date ): FIXED! (:,
+				- Added Truemap + Additive to piXel! as an optimized call,
+					(Quite slow anyway...)
+				- Added Truemap + Gouraud to piXel! as an optimized call,
+					(Quite slow anyway...)
+				- Now using BASS Sound System! It kicks ASS!
+				- Overall Speed-up,
+				- Switched back to xAudio for a small amount of time because gAudio
+				  is having too much problems on my computer ):,
+				- Small boost to piXel!, one thing to do would be to write a sub-pixel/texel
+				  integer correction... hmmm too lazy right now,
+				- Almost stable version gnark gnark gnark,
+				- Oooops, minor bugs with sparks fixed,
+				- Added Inverse Kinematik
+				  However IK chain's behavior is not the same as LW's one so it is unusable
+				  for organic motions... Cool for tentacles anyway (:
+				- Light color affects Lens Flare color,
+				- Rewrote transformation pipeline, objects can now morph and gizmo at the same time,
+				  also gave a major speedup, parenting objects almost cost nothing now...
+				- Memory hole nearly vanished,
+				- Silly bug with morph fixed...
+				- Woohaa! TARGET fixed! Finally got to understand much things (:
+				  IK is too be done very soon! (Urch! headache...)
+				- Multi-texture/Single-stage are now correctly interpreted,
+				- Reduced alot memory requirements in all cases,
+				  added option to further reduce memory requirements but NOT in all cases!
+				- Hmmm... No more Lightwave's samples crash now (=!
+				- Improved Surface resolver Logic, hopefully no more bugs in it!
+				- Minor fixes,
+				- Added JPEG support to IMGmng using JPEGsrc6b garg... had to write
+				  custom IO manager a little bit crappy but it should work fine! (:
+				- Implemented IFF support to IMGmng, (24 Bpp RAW/RLE for now !RLE NOT STABLE!)
+				- Compatibility is almost 100%. Only 2 lightwave's samples crashes,
+				- Oh shit! Loader improved! Hummer.lws doesn't fool it anymore [:!
+				- Began to write some 'REAL' error handlers {; ,
+				- Just watched 'a Bug's Life' and it ROXXXXXXXXXX! Arg! (=
+				- Added .INI file to locate Lightwave's folder,
+				- Enhancements to memory allocations...
+
+			v1.7beta:
+				- More solid clean up code... reduced the memory hole (;
+				- Upgrade to my pic lib added BMP/FIX/FFC image format support,
+				- Added some procedural map (Fractal Noise/Fractal Bumps/Crumple),
+				- Removed a silly bug wich caused preca not to see sparks,
+				- Improved transparency logic, [FOREMOST] is useless now,
+				- Corrected some bugs in floating point modulo this should have fixed small problems
+				  with envelops using frame offset,
+				- Rewrote motion loader,
+				- Added XM and MOD support,
+				- Multi-Scene GUI + gAUDIO output (MP3 support only! XM and MOD to come),
+				- Colormap and alphamap are now merged in one ARGB d3d texture when possible
+				  to allow multi-texture transparency on non-multitexture capable board,
+				- Maintenance in source code,
+				- Rewrote features part of this doc.
+
+			v1.6:
+				MAJOR UPDATE!
+				- Custom resolution (in lightwave' camera panel) correctly supported,
+				- Added [FOREMOST] surface's keyword because of the multipass rendering
+				  using Direct3D, by default nX first renders opaque surfaces then transparent
+				  ones, with this keyword you can force an opaque surface to render AFTER
+				  a transparent one,
+				- Removed MMX as it suxx hard (slower than straight pentium because my
+				  rasterizer strongly rely on FPU and doing EMMS all the time is F*****G
+				  SLOW! (:
+				- Improved bilinear resizing,
+				- Hum oh yeah, DirectX yet rewrote... seems that even after 10 months
+				  of DirectX coding you still learn every day \-:
+				- Compatibility improved! Please try Lightwave tutorial's scenes (;
+					THE RENDER IS STUNNING IN piXel!
+				- Cleaned up the structures, saved some memory there and there,
+				- Welcome home MOA! (: MOA is back,
+				- Fixed problem with FLAT variant in generic rasterizer,
+				- Rewrote the HOWTORENDER part of this doc,
+				- Implemented the GENERIC RASTERIZER now software can perform EVERY rendertypes!
+				- Corrected the loosy d3d bug wich made some rendertype unavailable...
+				  TNT additive + map + alpha now works (;
+				- Corrected a stupid clipping error which caused the rasteriser to draw 639x479
+				  instead of 640x480 (:
+				- Viewport are now 100% correct (Zoom Factor is correctly interpreted),
+				- piXel has support for FLAT ( with optional lightsource ) + ALPHA texture
+				  + optional ALPHA factor, (plus sotware WIDE support)
+				- Negative image support for all levels,
+				- Yahaaa! (: So cool i've found what I think is the BEST way to code
+				  D3D multi-texture stage... Now you can set every combination you want and
+				  if your hardware doesn't support one of them it will fall to the nearest
+				  possible! And the code takes only 1 page! (8 Pfffu so GREAT!
+				- Implemented software wide texture map! Removes 256x256 texture size limitation,
+					Specify [WM] in surface name to activate.
+					WARNING!: Texture repeat WILL crash!
+				- Fix: Some map memory wasn't deallocated because allocated more than once!
+				- Implemented bilinear interpolation when resizing a texture,
+				- Direct3D has no texture size limitation (except hardware's one),
+				- Transparency texture level is now active (piXel support only for mapping
+				  or envirronment mapping no perspective),
+				- Rewrote color conversions as DirectX does not perform them in soft in there
+				  is no hardware for them... MMX version also btw (;
+				- YEAH! DirectX code seems to be solid as a rock now (; (is that truly possible?)
+				- Added some MMX specific routines... Not so fast except for hires )<
+				- Internal color scheme is now 32bits! RGB888,
+				- Some cleanup in DirectX, color conversions are now leave to DirectDraw,
+				- D3D implementation now support all possible texture formats except 8bits one,
+				- Light color support with exact Lightwave's behavior.
+
+			v1.5:
+				MAJOR UPDATE!
+				- Compatibility rate is near of 100%!
+				  Almost all scene can be loaded (even lightwave's tutorials), however as there
+				  is always many uncorrected polygon the rasteriser crash sometimes, some scenes
+				  also overcome the maX settings but i actually replay 34 out of 36 lightwave's
+				  tutorials! Including some heavy scenes upto 300000+ polygons YEAH!
+				- Rewritten about 80% of clipping, lightning, face builder and some touch here
+				  and there to all polygon routines in order to implement structured vertex! Yes!
+				  I can't believe I did that (: ... So here what's new:
+					- Faster clipping,
+					- faster but still slow lights,
+					- no more gouraud flashing bugs,
+					- no more lightning bugs,
+					- virtually unlimited texture levels with independent settings,
+					- fast face constructor.
+				  The code is now really upgradable!
+
+			v1.2:
+				- Saved memory by only allocating used texture level...
+				- Texture levels are now REALLY supported (:
+				  This mean you can map a bump using spherical and a color map
+				  using planar with both texture having different velocity and
+				  this will work! Yeah!
+				- Linear fog is now supported in software (colored),
+				- Cleanup in lightning code,
+				- Speedup to polygons,
+				- Lens flare support, you can specify a lens map you wish to use
+				  by using this keyword in light's name:
+					[flare=<complete filename>]
+				- Polygon size supported to make particle effects,
+					i.e: any polygon size different from 1.0
+					     draw particle on each vertex sized in
+					     proportion of polygon size value,
+				- Made most of the routine work outside a scene context,
+
+				-=- CHANGES FROM X32 TO nXs3 -=-
+
+			NEW ! for v5.24.99 :
+				- Reduced memory requirement when doing multiscene,
+				- Major changes within code to allow combining scenes without any restriction,
+				- Removed a bug when loading GIZMO targets having more surfaces than GIZMO source,
+				- Implement correct error return for DirectX inits,
+				- No polygon bug removed today! It seems their bugs are getting very minor now ! (:
+
+			NEW ! for v5.16.99 :
+				- Rewrote texture code to be faster. I must now init DX before scene load ) : too bad !
+				- Enhanced polygonal rasterization ! ALOT less bugs ! Non-planar & convexe should
+				  still be avoided anyway {8 but they shouldn't crash as often as before,
+				- !ADDED! Bounding Boxes for optimal clippings,
+				- !ADDED! Runtime statistic (only SOFT),
+				- Lowered memory requirement from 100+mo to 10mo ! <Now i can load 40 scenes without any swapping ((:>
+				  Scenes now allocate everything on-the-fly, only screens and lookups are statics.
+				- WAHOOOO ! ! ! ! Fucking optimisation to Smoothed normals calculations ! ! ! 
+				  ENJOY new loading times palz! This is ASTONISHINGLY faster ! (:
+				- Cleaned lot of code, speeded up rotations, corrected a bug with negative modulo,
+				- !ADDED! Pfff... MORPH-GIZMO !
+				- Reorganised loader, once again more object oriented !
+				  This have cleaned the code ALOT ! It should now be really easy to implement new
+				  features (kweeel J ). Gizmo is almost finished and bones are on a very good way
+				- Major optimisation (: Anyway THERE IS one restriction (would you call that a restriction ? (; )
+				 Just check the current statement and general rules for more infos <entry : !EDGEOPTIM !>,
+
+			NEW ! for v4.29.99 :
+				- Corrected two vicious bugs in my latest optimisations to Loader,
+				- !ADDED! Software W-Buffering (32 bits) !
+					must specify '[ZBUFFER]' in surface name to activate,
+					Currently with :
+						-Flat both lightsource & non-lightsource,
+				- Maps bigger than 256x256 are now automatically reduced,
+				- Percentage for scene loading,
+				- Fully functional release now with preca enabled !,
+				- !ADDED! Mapping + Chroma Keying + Alpha,
+				- Surface's lighting restriction to specific light of the scene,
+					Specified in name of surface by use of keyword 'LGT_x[+x][+...]'
+					where x is the index of light in scene loading. Example :
+						'LGT_1' or 'LGT_2+5+8+6'
+				- !ADDED! Mapping + Gouraud + Chroma Keying,
+				- !ADDED! Perspective mapping + Gouraud,
+				- !ADDED! Mapping + Gouraud + Additive,
+				- !ADDED! Envirronment mapping + Chroma Keying,
+				- !ADDED! Mapping + Chroma Keying,
+
+			NEW ! for v4.20.99 :
+				- Major improvements to color levels ! ALPHA is now 100% correct !
+				- Fixed luminosity differences between Soft and D3D,
+				- More colors (64 shade levels versus 32 for previous version),
+				- TOTALLY rewritten clippers!
+					This removed a bunch of nasty bugs ! Hopefully there shouldn't be
+					those random-'CLOSE/DEBUG' anymore ! (( :
+					BTW : It fixed strange polys in 'sc1\land.lws',
+				- !ADDED! Sub-pixel/sub-texel accuracy on all software renderers ! ! !
+					This cost a large speed decrease but this really deserve it !
+					Anyway rasterisation of polygons have been greatly improved
+					by saving many memory access so the speed should not suffer that
+					much with ALOT more correct renders with no holes beetwen polys
+					and very accurate motions ! Think that 1'pixel-poly' do show now! ( :
+				- D3D is now more accurate and should run better on more card.
+
+			NEW ! for v4.7.99 :
+				- Clipped envelops,
+				- !ADDED! Automatic stretching of wrapping textures, now each textures
+				  is stretched to 256 pixels wide along its wrapping axis (if any),
+					(does not apply to D3D renderer)
+				- !ADDED! Object dissolve support ,
+					Work with: _Gouraud (including Specular),
+						  _Flat both lightsourced or not (including Specular),
+						  _Non-Corrected mapping,
+						  _Non-Corrected mapping additive.
+				- !ADDED! Support for TARGA24 & 32 RLE encoded,
+				- Yes ! Yes ! Yes ! Finally removed that fucking loader bug wich made
+				  some scene only loading in debug compilation !
+					BTW : gOds' TOYS scenes replays perfectly ! ( :
+				- !ADDED! Edge&Cone angle envelop support for SpotLight,
+				- !ADDED! Support for Cubic Image Map & Cylindrical Image Map.
+
+			NEW ! for v4.5.99 :
+				- Removed a minor bug in Direct3D cleanup,
+				- First frame of scene also influence MOA so you can quickly visualize
+				  changes made to a scene without viewing it all!
+				- Improved alot viewpoint skipping and also removed a vicious bug in it,
+				- Yepaaa! Once again! Loader loads from 30 to 50% faster!
+					old:23,930s -> new:17,216s
+					old:3,452s -> legend, new:2,500s
+					old:5,010s -> scenea, new:2,947s
+					old :220,990s -> 16384 faces sphere gouraud, new : 112,304s
+				- !ADDED !D3D Z-buffered output, < you got it Kinan! ( = >
+					Mo W-buffer for the moment,
+				- Removed Zcut problems with D3D,
+				- Scene size is now entry dependent (i.e each scene in the list has its own size),
+				- Added lens flare size panel (scene dependent also),
+				- nX is no more fooled by the missing paths in Lightwave 5.6' scene file!
+				- Corrected various HUGE bugzzz ( : .
+
+			NEW ! since change (upto X32-4.2.99)
+				- Totally rewritten loaders (expect a 2~3x gain factor in loading times),
+				- Accurate mapping calculations,
+				- Working DIRECT3D support (with benefits from multi-pass capable 3d accelerators),
+					Texture format supported : RGB555, RGB565, BGR565 only!
+				- Now fully object oriented,
+					designed to be exportable! Only include "x3.h" and send
+					user parameters to X3!!! ( = sooo good!
+					implemented a scene list so you can nearly make a whole demo with the basic GUI!
+				- Support for background Soundtrack (only MPEG-audio streams are supported for now),
+				- Corrected end behavior' behavior ! ( :
+				- Light's lens flare option now draw an additive scaled sprite (i.o.w : real time lens flare),
+				- Lowered by about! 100%! memory requirements! Yes, this is true!,
+				- Support for 16bit RLE-Encoded Targa added.
+
+				-=- CHANGES FROM X3 TO X32 -=-
+
+			NEW! for v2.4a:
+				- ADDED! ALPHA transparency,
+				- Gwa! I did deliberatly remove the parent sizing! Pfuuh... now fixed,
+				- Texture width & height repeat supported (little loss of precision in some roots),
+				- Finally properly re-implemented end behavior.
+					It should works for EVERY supported motion types & envelops,
+				- Et hop! MetaMorph is now supported for all CAPS (shaded morph is supported!),
+				- Added camera focal envellop,
+				- Finally had a fix for the camera banking bug! Thanxx gOzer!.
+
+			NEW! for v2.4:
+				- GREAT speed improvement to lights handling (go on now with your 32 spotlights ((: ),
+				- Minor fixes to Direct3D,
+				- Finally supporting 16bpp in 555 RGB mode (you coders know what i'm talking about),
+				- Texture Fx (for now 4-way synched scrollings only),
+				- !First SHazE 'Small Haze Engine' version!
+					Allows for NULL SHazE objects to emit fog with parametrable velocity & direction!,
+				- I still don't want to set version to 3.0 unless shadows are done...
+					but i feel so lazy about this...
+					even if major change have been done since 2.0!
+
+			NEW! for v2.2c:
+				- Glide support (fully functional),
+				- Basic Direct3D support (MS guys should really learn how to write docs!),
+				- Totally rewritten all Windows/DirectX inits,
+				- Mixed color double-texture mapping added,
+				- Wow! What a nice GUI you got here (8!,
+				- FIXED: Camera switches now works.
+
+			NEW! for v2.2:
+				- Discarded Z-Buffer shadowmaps as they sucked,
+					but v2.3 might feature PolyLook Realtime shadows,
+				- RAYTRACED shadowmaps (support for ALL usual light types SPOT-LINEAR-POINT),
+					ONLY for PRECALCULATED shadow maps! DISABLED.
+				- MAJOR Cleanup in code,
+					a step further in encapsulation. More structured now,
+				- Alot improved GUI! Allowing for lightning-speed Lightwave~X3 previewing,
+				- Faster loading, less inits, more power (-; .
+
+			NEW! for v2.0:
+				- No more greyscale suckin' conversion for double-texture maps.
+				- Support for precalculated Z-Buffer SHADOWMAPS!
+					These are calculated upon ALL spotlights casting shadows in scene.
+
+			NEW! for v1.9:
+				Major upgrade to light handling:
+					- SpotLight with both Cone Angle & Edge Angle 100% !CORRECT!,
+					- Ambient Intensity support envelop,
+					- Light intensity support envelop, (all types)
+					- Light range support envelop, (Spot and Point lights only to conform to LightWave)
+					- Unlimited number of lights,
+					- Distant light.
+					- Still (and probably never) support for light color )):, boooh...
+
+			NEW! for v1.8:
+				FORGET YOUR OLD 'LIGHT-IS-THE-CAMERA' shaded polygons!
+				Primary lights support:
+					-Point light is correct but Spot Light still need some work.
+
+			NEW! for v1.7:
+				- MaxSmoothingAngle feature added! Very useful! Normals-based shading looks ALOT better.
+					(BTW: Lightwave SDK is WRONG as the IEEE is already in radian and not in degree)
+				- Preca is now calculated with zBuffer (v1.7 :: suggestion from the din-O),
+
+			NEW! for v1.6:
+				- Preca enhanced by using 3 different sorting (discarded),
+				- Preca. added!
+					Onto fabulous framerate now!,
+
+			NEW! for v1.5:
+				- A GUI!!! Unbelievable but TRUE! a Working WINDOWS-Like GUI
+					(ugly as possible but always useful).
+
+			** OBSOLETE Revisions... **
+			Rev: 1.5	- Finally Z-corrected sutherland implemented!
+			Rev: 1.4	- Rewritten Z-cut & sutherland pass to be more flexible,
+						  better and easier implementation of surface types,
+						- Mapping support!.
+			Rev: 1.2	- Added 100% correct rotations matrix (LIGHTWAVE model),
+						  camera's banking still looks wrong but i'm not sure...
+						  (2.0: I was RIGHT plop! ((:)
+			Rev: 1.1	- Parent objects added!,
+						- Support Null Object command,
+						- Full pivot point support.
+			Rev: 1.0	- Working Z-Cut,
+						- Flat no surface ]: .
+			Rev:<1.0	- Rotating points ((((: hahahaha!
+
+	
+	
+8) THE REPLAY ENGINE AND MOA:
+-----------------------------
+
+		The precalculation works by previewing faces visibility for the whole motion (so you must recompute
+	the full precalculation as soon as you change any scene' entity motion). As the precalculation allows a
+	GREAT speed improvement an option allows user to select precalculation precision so that you can use
+	it at any time you try a scene. OF COURSE, the less precision you set the more glitches you'll get during
+	playback! As a rule you should only use x8 motion analysis for previewing scenes and final compilation
+	should be done with HI precaprec. Preca precision bugs often appears as missing polygons ...
+
+		ONE VERY IMPORTANT THING TO REMEMBER IF YOU WISH TO GET MAXIMUM PROFIT FROM PRECALCULATION!:
+		Always split your worlds/scenes in different objects. No matter if instead of one big static world
+	you get 32 moving parent objects (or whatever more complex things you wish) the replay using preca will
+	ALWAYS be FAR faster (except if you always see all objects at once (: ) bcoz the precalculation permits
+	X32 to skip non-visible objects without even doing 1 mul for the object! {-8*
+
+
+
+9) LAST TIPS:
+-------------
+
+		RULE 1:
+		[-----]
+
+		Let's say you are in a tunnel (hum... what an improvement!) and you ride across thousands of doors
+	that opens just when you get close to them. PLEASE do not use thousands doors object! But instead use
+	3 or 4 doors objects and move back a door object in front of you as soon as it went beside you (got it?!).
+		Here is an example seen from the tunnel's side. v is the viewer da, db, dc are 3 doors objects:
+
+		Frame x:
+		[------]
+				da			db			dc
+			v	|			|			|
+			--> |			|			|
+				|			|			|
+
+			v comes in front of da. da opens.
+
+		Frame x+n:
+		[--------]
+							db			dc
+					v		|			|
+					-->		|			|
+							|			|
+
+			da is discarded from v's view. v comes in front of db.
+
+		Frame x+2n:
+		[---------]
+										dc			da
+								v		|			|
+				 				-->		|			|
+										|			|
+
+			As db opens. You put back da to the next door's position behind dc. Et ainsi de suite...
+	Of course... this technique is only useful when dealing with repeating objects. If you want to make
+	a different door anytime then you'll have to make thousands objects... and it will be slow...
+		This can also apply to any other object in a scene. 
+		ALWAYS RE-USE AN OBJECT INSTEAD OF LOADING ANOTHER OBJECT' INSTANCE WHEN YOU CAN!
+
+
+
+A) FOLLOWING GUYS DESERVE GLEEETINGZ:
+-------------------------------------
+
+	- Odin/gOds: We've done a very long way coding together and that was GREAT! Good old AMIGA
+			times... when talking of realtime lightnings and true mirrors sounded like utopia (:
+	- Liszt/gOds: I always liked your techno-style and I now like your work as a 3D-Artist! Good luck
+				  for IMAGINA2000!
+	- Chris/gOds: We never really met again since Fraction but in that time you gave me some
+				  real motivations to go on with demoscene! Thanks! (:
+	- Kinan: Yep! We'll do it one day! (: Until this moment we have to keep learning EVERYTHING! {8
+	- Traven: A new friend but a good one I think (I hope! I'm sure (; ) and vERy talented! Stop IRCing
+			  make music instead! (; (we all now he's making music all day. IRC is just to take a break)
+	- NoRecess: You're in! See you tomorrow.
+	- Gozer: Wooby! How's your hairy monster doing?
+	- Jibe: "Ptain' y fait le mac avec sa camera Lightwave genre j'my connais et tout j'vais tout gerer
+			 pour toi!" (;
+	- Yes/OJ: Thanks for giving us (Traven and I) the oportunity to do LTP's stuff! You're great!
+	- Nitryk: Mhhhh... presque assez glauque (:
+	- Pingoo: A ouais merde! Les graphs pour hier... °:
+	- Madé: Panda va! d: Carlîtosaure! hmrff (:
+	- U2: Allez! Un ptit coup d'D3D7? (:
+	- G-Hell: Too... too... tooooo...
+	- AlexKidd: Merci pour le CD! (; A un de ces 64 sur IRC!
+	- And the many other cool people on the scene that I knew or I know but the list is far too long
+	  to be written here ): i'll add greets with time (:
+
+
+
+					Emmanuel JULIEN,
+					(alias xBaRr/Syndrome) 1998~99.
+							Merde, le temps ça passe...
+
+
+												Any comment should go to:
+													xbarr@pingoo.com

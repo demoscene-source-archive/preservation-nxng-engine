@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>nXs3 - Syndrome 3d Engine - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="3d-engine lightwave realtime replayer syndrome xbarr">
+<meta name="description" content="Official documentation of nXs3 -The Syndrome 3d engine - by xBaRr alias Emmanuel JULIEN 2000 All Rights Reserved.">
+</head>
+
+<body bgcolor="#c4a8a3" link="#2C6782" vlink="#666666" alink="#CCFFCC">
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td valign="top" bgcolor="#000000"> 
+      <div align="right"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><a name="about"></a><font size="+1" color="#FFFFFF">1) 
+        About:</font></i></b></font></div>
+    </td>
+  </tr>
+  <tr bgcolor="#a5b5c4"> 
+    <td valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        <i><b>nXng</b></i> is a <a href="http://www.newtek.com">NEWTEK Lightwave</a> 
+        based demo 3D-Engine. It barely works like any other 3D-Engine.<br>
+        </font><font face="Arial, Helvetica, sans-serif" size="-1">It 
+        is pure software, transformations/clippings/lightning are hand written 
+        the only calls made to D3D are SETRENDERSTATE and DRAWPRIMITIVE.<br>
+        Audio output is done via <i><b><a href="http://www.un4seen.com/music">BASS 
+        Dll 0.8</a></b></i> by Ian Luck.<br>
+        </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><b>Demos 
+        that use nX:</b><br>
+        <br>
+        - Dash (Condense) uses x3 [<a href="http://condense.planet-d.net">CONDENSE 
+        Website</a> or on my web site],<br>
+        - LTP3 Intro-Invitation (Syndrome) uses X32 [<a href="http://syndrome.planet-d.net">Syndrome</a>],<br>
+        - FreeStyle (Condense &amp; Syndrome) uses nX [<a href="http://syndrome.planet-d.net">Syndrome</a>],<br>
+        - and more to come (: ...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"> <b>Requirements:</b><br>
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> - <a href="http://www.intel.com"><b>Pentium</b></a> 
+        class processor (MMX is not a plus),<br>
+        - <a href="http://www.microsoft.com"><b>DirectX 7.0</b></a> with at least 
+        a DirectX compatible graphic card.</font></p>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td colspan="2" bgcolor="#000000"> 
+      <div align="right"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><a name="gui"></a><font size="+1" color="#FFFFFF">2) 
+        The GUI (User Interface):</font></i></b></font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2" bgcolor="#a5b5c4"> 
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif"><b><a name="playlist"></a>2.0] 
+        Playlist and Sequences:</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">nX use 
+        the well-known system of playlist to allow user to view more than one 
+        scene in a go. But it also introduce the Sequence system so that user 
+        can create a mini-show just from the GUI.<br>
+        <br>
+        <i>A sequence can contain one or more Lightwave scene and an optional 
+        Audio track. If a sequence contains more than one scene then nX will render 
+        all of them, each new scene being drawn over the previous one. If a sequence 
+        contains more than one Audio track then only the last one will be played.<br>
+        This system has several advantages like making easier integration of static 
+        layers over a complex moving scene for example.<br>
+        When a sequence launch an Audio track it won't be stopped until another 
+        Sequence with Audio track is found.</i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">A playlist 
+        contains informations about all your sequences in the Tree Control, you 
+        can Save [S] it to disk.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><i><b>To 
+        add a sequence to playlist just right click in the playlist 'Tree Control' 
+        on the GUI.<br>
+        To add Scenes/Audios to a sequence select the entry in the sequence that 
+        will be before the new item then double-click on it to bring up file requester.</b></i></font></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif" size="-1"></font></i><font face="Verdana, Arial, Helvetica, sans-serif"><b><a name="general"></a>2.1] 
+        General rendering options:</b></font><font face="Arial, Helvetica, sans-serif" size="-1"><br>
+        </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1"><i>Most 
+        of buttons/items on GUI have keyboard shortcut. They are shown in brackets 
+        to the right of the button name, for example shortcut to quit is escape 
+        (Quit [ESC]).</i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">Check 
+        'Fullscreen at Startup [F]' item if you want to go fullscreen as soon 
+        as you press the replay button.<br>
+        </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+        'Default Shading as Flat [D]' item changes nX default shading from no 
+        lightning to flat lightsource shading, useful if you are going to lightsource 
+        all of your world and do not want to specify lightsource for every surfaces.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+        dragable item in MOA tab controls MOA quality. The checkbox 'Force MOA 
+        Update [M]' force nX to recompute MOA for the whole playlist before replaying 
+        it. <i>Please refer to MOA section for informations on MOA itself.</i> 
+        </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+        dragable item in Lightmaps tab controls Lightmaps quality. <i>Please refer 
+        to Lightmaps section for informations on Lightmaps.</i> </font></p>
+      <p></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif"><b><a name="ini"></a>2.2] 
+        The 'nXng.ini' file:</b></font><font face="Arial, Helvetica, sans-serif" size="-1"></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"><i>In case you don't 
+        have it, simply cut and paste the following block in a file named 'nXng.ini' 
+        in program directory:</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> [--------------- 
+        CUT FROM HERE ---------------]</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> INI file for nXng 
+        (Syndrome 3D Engine)<br>
+        --------------------------------------</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> ' Set the path of 
+        your lightwave BASE directory (i.e: the directory<br>
+        ' containing your programs|plugins|images|scenes|objects folders NOT<br>
+        ' the directory containing the .exe (unless you moved them from their<br>
+        ' original folders), In most case this is 'c:\newtek\'</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> [NEWTEK]<br>
+        c:\newtek\</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="-1"> [-------------- 
+        END OF INI FILE --------------] </font></p>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#000000"> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

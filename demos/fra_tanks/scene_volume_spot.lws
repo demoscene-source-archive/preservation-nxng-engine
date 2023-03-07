@@ -1,0 +1,137 @@
+LWSC
+1
+
+FirstFrame 1
+LastFrame 50
+FrameStep 1
+PreviewFirstFrame 1
+PreviewLastFrame 350
+PreviewFrameStep 1
+FramesPerSecond 25.000000
+
+LoadObject S:\NEW\obj_volume_spot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.2 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 5
+ParentObject 3
+Metamorph 1.000000
+MorphTarget 2
+MorphSurfaces 0
+ShadowOptions 0
+
+LoadObject S:\NEW\obj_volume_spot_morph_target.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ObjDissolve 1.000000
+ShadowOptions 0
+
+LoadObject S:\NEW\obj_spot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  7
+  0 -0.675 0 0 0 71.3 1 1 1
+  0 0 1 0 0
+  0 -0.675 0 50.00001 0 4.799992 1 1 1
+  100 0 -1 0 -0.99
+  0 -0.675 0 -65.7 0 31.99999 1 1 1
+  120 0 -1 0 0
+  0 -0.675 0 -55.19996 0 26.89999 1 1 1
+  200 0 -0.91 0 0
+  0 -0.675 0 75.90001 0 -66.60002 1 1 1
+  220 0 -0.91 0 0
+  0 -0.675 0 131.7235 0 -68.01435 1 1 1
+  280 0 -1 0 0
+  0 -0.675 0 0 0 71.3 1 1 1
+  350 0 1 0 0
+EndBehavior 1
+LockedChannels 2576
+PivotPoint 0 -0.675 0
+ShadowOptions 7
+
+LoadObject S:\NEW\obj_volume_spot_cylinder.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+ParentObject 3
+ShadowOptions 7
+
+AmbientColor 255 255 255
+AmbIntensity 0.250000
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -2 2 -2 45 35 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 255 255 255
+LgtIntensity 1.000000
+LightType 0
+ShadowType 1
+
+ShowCamera 1 7
+CameraMotion (unnamed)
+  9
+  1
+  -6.877427 13.194 -10.50109 42.60001 35.20001 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ZoomFactor 1.368000
+Resolution 1
+PixelAspectRatio 2
+SegmentMemory 12000000
+Antialiasing 0
+AdaptiveSampling 1
+AdaptiveThreshold 16
+FilmSize 2
+FieldRendering 0
+MotionBlur 0
+DepthOfField 0
+
+SolidBackdrop 1
+BackdropColor 0 0 0
+ZenithColor 0 40 80
+SkyColor 120 180 240
+GroundColor 50 40 30
+NadirColor 100 80 60
+FogType 0
+DitherIntensity 1
+AnimatedDither 0
+
+RenderMode 2
+RayTraceEffects 0
+ClipRayColors 0
+DataOverlayLabel  
+FullSceneParamEval 0
+
+ViewMode 0
+ViewAimpoint 0.000000 0.000000 0.000000
+ViewDirection 0.300197 -0.314159 0.000000
+ViewZoomFactor 4.000000
+GridNumber 40
+GridSize 5.000000
+ShowMotionPath 1
+ShowBGImage 0
+ShowFogRadius 0
+ShowRedraw 0
+ShowSafeAreas 0
+ShowFieldChart 0

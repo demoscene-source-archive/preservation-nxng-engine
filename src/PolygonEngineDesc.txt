@@ -1,0 +1,14 @@
+	Polygon Engine fileset.
+	Emmanuel Julien 2000. xBaRr.syndrome
+
+Content:
+--------
+
+	General:
+		Routines to build/clip polygons from entities.
+
+	Files:
+		nX_Entity-Render.cpp:	Add all of the visible entity polygons to nX
+								facelist.
+		nX_Clipping.cpp:		Set of functions to clip polygons against scene
+								viewport.

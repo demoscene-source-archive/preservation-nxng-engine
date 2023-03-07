@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>nXs3 - Syndrome 3d Engine - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="3d-engine lightwave realtime replayer syndrome xbarr">
+<meta name="description" content="Official documentation of nXs3 -The Syndrome 3d engine - by xBaRr alias Emmanuel JULIEN 2000 All Rights Reserved.">
+</head>
+
+<body bgcolor="#C4A8A4" link="#2C6782" vlink="#666666" alink="#CCFFCC">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#000000"> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#000000">
+  <tr> 
+    <td width="20%"><img src="nxs3it.jpg" width="188" height="119"></td>
+    <td width="40%" bgcolor="#000000"> 
+      <div align="center"> 
+        <p align="center"> <font face="Arial, Helvetica, sans-serif" color="#FFFFFF"><b><font size="+1">nXng 
+          [CAPSULE] </font></b></font><br>
+          <font face="Arial, Helvetica, sans-serif" size="-1" color="#546C78"><b>by 
+          Emmanuel JULIEN [xBaRr/Syndrome]</b></font></p>
+        <p align="center"> <font face="Verdana, Arial, Helvetica, sans-serif" color="#FCFEFD" size="-1"><b>'The 
+          Syndrome 3D engine'<br>
+          <font size="-3" color="#546C78">Experimental HTML document</font></b></font></p>
+        <a href="nxng.zip"><font color="#FFCC99" face="Verdana, Arial, Helvetica, sans-serif" size="-1"><b>&gt; 
+        DOWNLOAD nXng [2.0] - 9.0.0.7 &lt; <br>
+        </b></font></a> 
+        <p align="center"><font face="Arial, Helvetica, sans-serif" size="-1"> 
+          <a href="mailto://xbarr@pingoo.com"><b>Mail me!</b></a><b><br>
+          <a href="http://xbarr.planet-d.net">xBaRr' Homepage</a><br>
+          <a href="http://syndrome.planet-d.net">Syndrome Homepage</a></b></font></p>
+      </div>
+    </td>
+    <td width="40%"> 
+      <div align="center"><font face="Arial, Helvetica, sans-serif" color="#546C78"><i><b><font color="#000000" size="-1">First 
+        build:</font><br>
+        12/09/1998 (x3)<br>
+        <font color="#000000" size="-1">Last released version:</font><br>
+        5.24.99 (X32), 1.7c (nXs3)<br>
+        [2.0] - 9.0.0.7 (nXng)<br>
+        <br>
+        </b></i></font> 
+        <table width="45%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td bgcolor="#000000">&nbsp;</td>
+            <td bgcolor="#475560">&nbsp;</td>
+            <td bgcolor="#6D7B86">&nbsp;</td>
+            <td bgcolor="#8FA2B0">&nbsp;</td>
+            <td bgcolor="#E3F2F7">&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="100%" colspan="3" bgcolor="#000000">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td width="179" bgcolor="#000000" valign="top"> 
+      <p align="left"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><i><font size="+1" color="#FFFFFF">Table 
+        of Content:</font></i></b></font> </p>
+    </td>
+    <td colspan="2" width="70%" rowspan="2" bgcolor="#a5b5c4"> 
+      <p align="left"><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#000000"><a href="gui.htm">nXng 
+        [<i>nX</i>+GUI] Topics:</a></font></b></font></b></font></p>
+      <font size="-1" face="Verdana, Arial, Helvetica, sans-serif">1) About,<br>
+      2) The GUI (User Interface) and how to use it</font> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="40">&nbsp;</td>
+          <td width="600"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">2.0] 
+            Playlist &amp; Sequences,<br>
+            2.1] General rendering options,<br>
+            2.2] 'nXng.ini' file.</font></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#000000"><i><a href="core.htm">nX</a></i><a href="core.htm"> 
+        Core [3D Engine]: </a></font><br>
+        </b></font></b></font></b></font></p>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="-1">1) Realtime 
+      VS. Raytraced renderers:</font><br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="40">&nbsp;</td>
+          <td width="600"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">1.0] 
+            Rendering considerations &amp; limitations,<br>
+            1.1] Automatic scene sizing &amp; Z-Buffering problems,<br>
+            1.1] Introducing MOA, </font></td>
+        </tr>
+      </table>
+      <br>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="-1">2) Supported 
+      LIGHTWAVE features:</font><br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="40">&nbsp;</td>
+          <td width="600"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">2.0] 
+            LW Scenes,<br>
+            2.1] LW Objects,<br>
+            2.2] LW Surfaces,<br>
+            2.3] LW Lights,<br>
+            2.4] Misc. features,<br>
+            2.5] Displacement PLUGIN: Morph-GIZMO,<br>
+            2.6] Displacement PLUGIN: Motion Designer MD-Plug.</font></td>
+        </tr>
+      </table>
+      <br>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="-1">3) <i>nX</i> 
+      Specific features:</font><br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="40">&nbsp;</td>
+          <td width="600"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">3.0] 
+            Particle emiters,<br>
+            3.1] Lightmaps,<br>
+            3.2] Object effectors,<br>
+            3.3] Motion trails.</font></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">4) 
+        <i>nX</i> Technical notes,</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Arial, Helvetica, sans-serif" color="#546C78"><b><font face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#000000"><a href="misc.htm">Misc. 
+        Parts:</a></font></b></font></b></font></b></font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="-1"><br>
+        <br>
+        1) History,<br>
+        2) Greets.<br>
+        <br>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif"><b><a href="faq.htm">Frequently 
+        Asked Questions:</a></b></font></p>
+      <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">1- 
+        How do I setup my surfaces?<br>
+        2- What's new in this release?<font color="#000000"><br>
+        </font>3- Why is your double texturing so dark?<font color="#000000"><br>
+        </font>4- Which library do you use to read JPEG files?<font color="#000000"><br>
+        5- How does the lightmaps work?<br>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="-1" color="#000000">6- 
+        Zcut (cutting faces that goes beyond camera) is done too far from viewpoint!</font></font></p>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#000000" valign="top"> 
+      <div align="center">
+        <p><img src="sct_open.jpg" width="320" height="240"><br>
+          <font color="#C0BCB0" face="Arial, Helvetica, sans-serif" size="-2"><i><b>- 
+          A scene from LTP3 opening ceremony by nX (80000+ pols) -</b></i></font> 
+        </p>
+        <p><img src="sct_iso.jpg" width="293" height="222"><br>
+          <font color="#C0BCB0" face="Arial, Helvetica, sans-serif" size="-2"><i><b>- 
+          IsoSurfaces -</b></i></font> </p>
+        <p><img src="sct_md.jpg" width="320" height="240"><br>
+          <font color="#C0BCB0" face="Arial, Helvetica, sans-serif" size="-2"><i><b>- 
+          Physic simulation trough Motion Designer -</b></i></font> </p>
+        </div>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#000000"> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0" cellpadding="6" bordercolor="#000000">
+  <tr> 
+    <td width="354" bgcolor="#000000" valign="top"><font face="Arial, Helvetica, sans-serif" color="#CCFFCC" size="-1"><b><font color="#FFFFFF">nXng[2.0] 
+      by Emmanuel JULIEN [xBaRr/Syndrome]<br>
+      All Rights Reserved 1998~2000.</font><i><br>
+      </i></b></font></td>
+    <td colspan="2" width="603"> 
+      <p align="center"><font face="Arial, Helvetica, sans-serif" size="-1"> <i><b>Any 
+        comment should go to: <a href="mailto://xbarr@pingoo.com">xbarr@pingoo.com</a></b></i></font></p>
+      </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#000000"> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

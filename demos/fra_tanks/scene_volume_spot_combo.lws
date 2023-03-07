@@ -1,0 +1,697 @@
+LWSC
+1
+
+FirstFrame 1
+LastFrame 50
+FrameStep 1
+PreviewFirstFrame 1
+PreviewLastFrame 1800
+PreviewFrameStep 1
+FramesPerSecond 25.000000
+
+LoadObject C:\night_tanks\obj_ground_tesselated_1.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 -0.025 0 0 0 0 2.046 2.046 2.046
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -9.000001 0.125 3.175 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_volume_spot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.2 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 5
+ParentObject 6
+Metamorph 1.000000
+MorphTarget 4
+MorphSurfaces 0
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_volume_spot_morph_target.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ObjDissolve 1.000000
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_spot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  7
+  0 1.575 0 0 0 60 1 1 1
+  0 0 1 0 0
+  0 1.575 0 50.00001 0 5.799992 1 1 1
+  100 0 -1 0 -0.99
+  0 1.575 0 -65.7 0 31.99999 1 1 1
+  120 0 -1 0 0
+  0 1.575 0 -55.19996 0 26.89999 1 1 1
+  200 0 -0.91 0 0
+  0 1.575 0 75.90001 0 -27.60001 1 1 1
+  220 0 -0.91 0 0
+  0 1.575 0 131.7235 0 -48.01434 1 1 1
+  280 0 -1 0 0
+  0 1.575 0 0 0 60 1 1 1
+  350 0 1 0 0
+EndBehavior 2
+LockedChannels 2576
+PivotPoint 0 -0.675 0
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_volume_spot_cylinder.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+ParentObject 5
+ShadowOptions 0
+
+AddNullObject Null
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 -5.499997 0 0 0 0 2.254001 2.254001 2.254001
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 5
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  7.449861 0 2.183574 -33.8 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -13.8 0 1.075 -19.8 2.1 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -0.3250232 0 -7.495276 -19.9 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -3.625 0.025 3.575 63.3 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_tank_detailled.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -8.550002 0.05 -7.275001 -61.10001 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_stars.lwo
+ShowObject 2 7
+ObjectMotion (unnamed)
+  9
+  2
+  -2.875 -14.625 0 0 0 0 2.041999 5.303999 2.041999
+  0 0 0 0 0
+  -2.875 4.275 0 0 0 0 2.041999 5.303999 2.041999
+  1800 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+PolygonSize 0.050000
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_stars.lwo
+ShowObject 2 7
+ObjectMotion (unnamed)
+  9
+  2
+  -2.875 5.175 0 0 0 0 1 3.523999 1
+  0 0 0 0 0
+  -2.875 -10.275 0 0 0 0 1 3.523999 1
+  1800 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+PolygonSize 0.050000
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_robot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -2.686566 0 2.116765 57.4 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_hi.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -4.166881 0 -3.664211 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -11.85 0 2.499999 66.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -3.424999 0 -3.625 66.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -4.625001 0.025 -4.125 66.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -4.1 0.8250001 -3.900001 66.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -16.84633 0 -3.695732 59.49998 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  5.025 0 3.85 66.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_hi.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  4.35812 0 1.160789 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -15.475 0.025 -5.225001 43.79999 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_barrel_lo.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -16.9241 0.025 -5.871684 37.99998 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_spot_foot.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_volume_glow.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.175 0 0 0 0 1.538 2.472 1.538
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+ParentObject 5
+Metamorph 1.000000
+MorphTarget 28
+MorphSurfaces 0
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_volume_glow_morph_target.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ObjDissolve 1.000000
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_volume_glow.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.2749999 0 0 0 0 1.066 3.569998 1.066
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 325
+ParentObject 5
+Metamorph 1.000000
+MorphTarget 28
+MorphSurfaces 0
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_layered_tiled_fog.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -4.074999 0 -0.8250005 0 0 0 1.138 2.362 1.162
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 128
+Metamorph 1.000000
+MorphTarget 31
+MorphSurfaces 0
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_layered_tiled_fog_morph_target.lwo
+ShowObject 1 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ObjDissolve 1.000000
+ShadowOptions 0
+
+LoadObject C:\night_tanks\obj_dirty_layer.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.3750001 0 0 0 0 3.46 1 3.036
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 133
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_dirty_layer.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1.794 1 1.51
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 128
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_dirty_layer.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0.175 0 0 0 0 2.416 1 2.225999
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 133
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_cemetery.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  6.881038 -0.2999999 -18.36378 -37.3 0 0 1.27 1 1.216
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 48
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_cemetery.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  -10.99396 0 -16.86378 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+LoadObject C:\night_tanks\obj_pebbles_around.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ObjDissolve 0.300000
+ShadowOptions 7
+
+AmbientColor 108 90 55
+AmbIntensity 0.020000
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 0 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 40
+ParentObject 5
+LightColor 255 255 255
+LgtIntensity 1.500000
+LightType 2
+ConeAngle 10.000000
+EdgeAngle 5.000000
+ShadowType 0
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 0 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 40
+ParentObject 5
+LightColor 162 196 202
+LgtIntensity 0.990000
+NoSpecular 1
+LightType 2
+ConeAngle 80.000000
+EdgeAngle 80.000000
+ShadowType 0
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 0 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 40
+ParentObject 5
+LightColor 86 152 173
+LgtIntensity 1.000000
+NoSpecular 1
+LightType 2
+ConeAngle 120.000000
+EdgeAngle 120.000000
+ShadowType 0
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 0 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 45
+ParentObject 5
+LightColor 128 147 102
+LgtIntensity 1.000000
+NoSpecular 1
+LightType 2
+LightFalloff 1
+LightRange 20.000000
+ConeAngle 180.000000
+EdgeAngle 180.000000
+ShadowType 0
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 4.275001 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 45
+ParentObject 5
+LightColor 184 159 86
+LgtIntensity (envelope)
+  1
+  20
+  1.2
+  0 0 0 0 0
+  1.3
+  1 0 0 0 0
+  1.105
+  2 0 0 0 0
+  1.2
+  3 0 0 0 0
+  1.24
+  4 0 0 0 0
+  1.015
+  5 0 0 0 0
+  1.13
+  6 0 0 0 0
+  1.2
+  7 0 0 0 0
+  1.112
+  8 0 0 0 0
+  1.28
+  9 0 0 0 0
+  0.9849996
+  10 0 0 0 0
+  1.175
+  11 0 0 0 0
+  1.08
+  12 0 0 0 0
+  1.125
+  13 0 0 0 0
+  1.18
+  14 0 0 0 0
+  1.12
+  15 0 0 0 0
+  1.06
+  16 0 0 0 0
+  1.15
+  17 0 0 0 0
+  1.09
+  18 0 0 0 0
+  1.28
+  19 0 0 0 0
+EndBehavior 2
+LightType 1
+LightFalloff 1
+LightRange 10.000000
+ShadowType 0
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 4.275001 0 0 -90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 45
+ParentObject 5
+LightColor 124 124 124
+LgtIntensity (envelope)
+  1
+  17
+  2
+  0 0 0 0 0
+  1.8
+  1 0 0 0 0
+  2
+  2 0 0 0 0
+  2.25
+  3 0 0 0 0
+  2
+  4 0 0 0 0
+  1.89
+  5 0 0 0 0
+  2.01
+  6 0 0 0 0
+  1.869999
+  7 0 0 0 0
+  2.1
+  8 0 0 0 0
+  1.85
+  9 0 0 0 0
+  1.97
+  10 0 0 0 0
+  2.03
+  11 0 0 0 0
+  2.12
+  12 0 0 0 0
+  1.95
+  13 0 0 0 0
+  2.13
+  14 0 0 0 0
+  2
+  15 0 0 0 0
+  1.91
+  16 0 0 0 0
+EndBehavior 2
+LightType 1
+LightFalloff 1
+LightRange 5.000000
+ShadowType 0
+
+ShowCamera 1 7
+CameraMotion (unnamed)
+  9
+  4
+  -16.80709 11.419 -11.44956 42.30006 34.09998 0 1 1 1
+  0 0 1 0 0
+  -5.760017 14.794 -14.47233 -1.700018 40.40002 0 1 1 1
+  384 0 -1 0 0
+  12.61136 9.034359 -17.11195 -27.46169 19.42703 -10.96228 1 1 1
+  1200 0 0 0 0
+  -1.215999 2.819001 -23.80923 4.899968 -4.599978 -4.200003 1 1 1
+  1800 0 1 0 0
+EndBehavior 1
+ZoomFactor 1.368000
+Resolution 1
+PixelAspectRatio 2
+SegmentMemory 12000000
+Antialiasing 1
+AdaptiveSampling 1
+AdaptiveThreshold 16
+FilmSize 2
+FieldRendering 0
+MotionBlur 0
+DepthOfField 0
+
+SolidBackdrop 1
+BackdropColor 0 0 0
+ZenithColor 0 40 80
+SkyColor 120 180 240
+GroundColor 50 40 30
+NadirColor 100 80 60
+FogType 0
+DitherIntensity 1
+AnimatedDither 0
+
+RenderMode 2
+RayTraceEffects 0
+ClipRayColors 0
+DataOverlayLabel  
+FullSceneParamEval 0
+
+ViewMode 5
+ViewAimpoint -1.575001 1.650000 0.000000
+ViewDirection 0.300197 -0.314159 0.000000
+ViewZoomFactor 6.000001
+GridNumber 40
+GridSize 5.000000
+ShowMotionPath 1
+ShowBGImage 0
+ShowFogRadius 0
+ShowRedraw 0
+ShowSafeAreas 0
+ShowFieldChart 0

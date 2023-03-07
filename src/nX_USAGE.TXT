@@ -1,0 +1,67 @@
+// nX Develloper doc
+// by Emmanuel JULIEN, xBaRr/Syndrome 2000.
+// All Rights Reserved.
+
+
+
+	SUMMARY:
+
+	I] nX USAGE RULES
+	II] CODE RULES
+		1) Displacement effectors.
+		2) nX Class Texmap Linked list,
+		3) 'Per-frame' normal computing considerations,
+
+
+I] nX USAGE RULES
+////////////////////////////////////////////////////////////////////////////////////////////
+
+1 - InitFXs ***MUST*** be called before any call to LoadLWS!!!
+
+
+
+II] CODE RULES
+////////////////////////////////////////////////////////////////////////////////////////////
+
+1) Displacement EFFECTORS:
+--------------------------
+
+	Next apply to:		nX_MDPlug.cpp [nX_Entity::LoadMDD(), nX_Entity::ApplyMDD()]
+
+Such effectors discard 'edge_adress' pointer to original mesh datas and move it to 'oMesh'.
+Effectors loading code MUST put back correct values to 'edge_adress' because several routines
+rely on the original mesh datas like the UVMapper.
+
+IN A SCENE NOT USING SUCH EFFECTORS 'oMesh' REMAINS NULL!
+
+NOTE: This do not apply to face and edge normal pointers wich are ALWAYS respectively stored
+in 'ofacenormals' and 'oedgenormals' pointers right after they've been computed.
+
+NOTE2: Such effectors usually make their calculations BEFORE the original mesh normals gets
+computed.
+
+
+2) nX Class TexMap Linked List:
+-------------------------------
+
+Any time a texture is loaded by a scene it is added to the scene's linked list AND to the
+parent nX instance linked list.
+TexMap are shared among scenes belonging to the same nX instance.
+TexMap use the 'RefCount method' used in COM objects (not an MS invention though...) to
+determine wether it can delete the texmap or if it is still used by another scene belonging
+to its parent nX instance.
+
+nX_TexMap.RefCount is a 32bit wide unsigned integer to avoid any problems with poorly written
+code such as a particle systems... Note: nX Native Particle System uses surface to store
+particles materials so it never refere more than once to a texture.
+
+
+3) 'Per-frame' normal computing:
+--------------------------------
+
+Some effectors such as [WAVE], METABALLS or general ISOSURFACES modify the original mesh
+thus making normals for it wrong.
+
+In order to accelerate the process of computing edge normals set the nX_Entity member
+'perframenormalcalc' to true.
+

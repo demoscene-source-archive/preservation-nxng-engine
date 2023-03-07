@@ -1,0 +1,629 @@
+LWSC
+1
+
+FirstFrame 1
+LastFrame 60
+FrameStep 1
+PreviewFirstFrame 0
+PreviewLastFrame 2300
+PreviewFrameStep 1
+FramesPerSecond 30.000000
+
+LoadObject C:\Vestige\vestige.lwo
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 0 0 0 0 0 7 7 7
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+AddNullObject Null
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 461.5 1 45 45 0 1.5 1.5 1.5
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+AddNullObject Null
+ShowObject 8 7
+ObjectMotion (unnamed)
+  9
+  1
+  0 1642.5 1 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ShadowOptions 7
+
+AmbientColor 255 255 255
+AmbIntensity 0.150000
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 500 0 45 35 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ParentObject 3
+LightColor 255 255 255
+LgtIntensity 12.000000
+LightType 1
+LightFalloff 1
+LightRange 1800.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 11 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ParentObject 2
+LightColor 210 255 255
+LgtIntensity 0.350000
+LightType 1
+LightFalloff 1
+LightRange 1450.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 -14 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ParentObject 2
+LightColor 242 255 255
+LgtIntensity 0.350000
+LightType 1
+LightFalloff 1
+LightRange 1450.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 28 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ParentObject 2
+LightColor 255 255 255
+LgtIntensity 0.350000
+LightType 1
+LightFalloff 1
+LightRange 1450.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 -35.5 0 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+ParentObject 2
+LightColor 223 255 255
+LgtIntensity 0.350000
+LightType 1
+LightFalloff 1
+LightRange 1450.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  571 -39 -148 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 238 255 255
+LgtIntensity 0.450000
+LightType 1
+LightFalloff 1
+LightRange 600.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -577 -49.5 -142.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 238 255 255
+LgtIntensity 0.450000
+LightType 1
+LightFalloff 1
+LightRange 600.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 -58 987.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 219 255 255
+LgtIntensity 0.350000
+LightType 1
+LightFalloff 1
+LightRange 700.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -60 -474.5 2866.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 255 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  48.5 -499.5 1907.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 202 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -57 -476 2255.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 255 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 427.5 5041 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 253 230 185
+LgtIntensity 4.000000
+LightType 1
+LightFalloff 1
+LightRange 1600.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -53.5 943.5 1994 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 255 255 255
+LgtIntensity 0.200000
+LightType 1
+LightFalloff 1
+LightRange 900.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  35 945.5 2981.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 255 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 900.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  35.5 -483.5 2120 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 202 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  35.5 -499.5 2400 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 202 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  35.5 -494 2729.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 202 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  -43.5 -479.5 2570.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 219 255 255
+LgtIntensity 0.150000
+LightType 1
+LightFalloff 1
+LightRange 2400.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 -266 3682.5 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 253 230 185
+LgtIntensity 0.200000
+LightType 1
+LightFalloff 1
+LightRange 700.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 198.6001 -3014.403 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 192.0002 -3144.6 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 197.4001 -3281.4 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 193.8001 -3415.801 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 197.4001 -3550.2 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  1.799991 199.2001 -3673.201 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LockedChannels 3
+LightColor 255 191 191
+LgtIntensity 0.400000
+LightType 1
+LightFalloff 1
+LightRange 2000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 1418.8 -1896.9 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 253 230 185
+LgtIntensity 0.500000
+LightType 1
+LightFalloff 1
+LightRange 1000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 1413.4 -3324.301 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 253 230 185
+LgtIntensity 0.500000
+LightType 1
+LightFalloff 1
+LightRange 1000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 1406.8 -4713.898 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 253 230 185
+LgtIntensity 0.500000
+LightType 1
+LightFalloff 1
+LightRange 1000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 6238.202 -5591.402 0 90 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 179 228 236
+LgtIntensity 2.000000
+LightType 1
+LightFalloff 1
+LightRange 4000.000000
+ShadowType 1
+
+AddLight
+LightName Light
+ShowLight 1 7
+LightMotion (unnamed)
+  9
+  1
+  0 1461.4 -5257.497 0 0 0 1 1 1
+  0 0 0 0 0
+EndBehavior 1
+LightColor 237 245 245
+LgtIntensity 0.300000
+LightType 1
+LightFalloff 1
+LightRange 1500.000000
+ShadowType 1
+
+ShowCamera 1 7
+CameraMotion (unnamed)
+  9
+  23
+  0 911.9999 3200 0 0 0 1 1 1
+  0 0 0 0 0
+  0 705 3200 0 45 0 1 1 1
+  100 0 0 0 0
+  0 -15 3200 0 0 0 1 1 1
+  200 0 0 0 0
+  0 -15 2975.5 0 0 0 1 1 1
+  250 0 0 0 0
+  0 -15 1473 0 0 0 1 1 1
+  400 0 0 0 0
+  0 -15 1180.5 0 0 -15 1 1 1
+  450 0 0 0 0
+  0 -15 1180.5 180 0 7.999999 1 1 1
+  550 0 0 0 0
+  0 37 676 180 24.50001 0 1 1 1
+  600 0 0 0 0
+  0 37 -522 42.90001 -4.399995 0 1 1 1
+  700 0 0 0 0
+  0 37 -522 18 -8 0 1 1 1
+  800 0 0 0 0
+  0 625 -125.6823 0 -80 0 1 1 1
+  900 0 0 0 0
+  0 840 -125 0 0 0 1 1 1
+  1050 0 0 0 0
+  0 840 -647 0 0 0 1 1 1
+  1100 0 0 0 0
+  538.6098 708.5 -809.9903 -30.6 -20.19999 0 1 1 1
+  1200 0 0 0 0
+  923.7219 982 -228.4711 -80.00002 -5.299992 0 1 1 1
+  1300 0 0 0 0
+  850.6484 982 376.4073 -115.6 -2.099995 0 1 1 1
+  1400 0 0 0 0
+  443.7826 982 717.6004 -149.8001 8.800005 0 1 1 1
+  1500 0 0 0 0
+  86.68314 982 570.2258 -173.8 1.100047 0 1 1 1
+  1600 0 0 0 0
+  9.286252 822 -947.7938 -183.2001 6.700047 0 1 1 1
+  1700 0 0 0 0
+  -10.71193 908.5 -4197.782 -182.7001 -1.499963 0 1 1 1
+  1900 0 0 0 0
+  215.2541 1134.7 -5397.468 -141.3001 32.00007 0 1 1 1
+  2000 0 0 0 0
+  -52.81413 3959.499 -5542.373 -46.4002 73.90013 0 1 1 1
+  2150 0 0 0 0
+  349.9756 6211.302 -5732.927 -84.20004 71.80019 0 1 1 1
+  2300 0 0 0 0
+EndBehavior 1
+LockedChannels 32
+ZoomFactor 1.800000
+Resolution 1
+CustomSize 640 360
+PixelAspectRatio 2
+SegmentMemory 2200000
+Antialiasing 0
+AdaptiveSampling 1
+AdaptiveThreshold 16
+FilmSize 2
+FieldRendering 0
+MotionBlur 0
+DepthOfField 0
+
+SolidBackdrop 1
+BackdropColor 0 0 0
+ZenithColor 0 40 80
+SkyColor 120 180 240
+GroundColor 50 40 30
+NadirColor 100 80 60
+FogType 0
+DitherIntensity 1
+AnimatedDither 0
+
+RenderMode 2
+RayTraceEffects 1
+ClipRayColors 0
+RayRecursionLimit 16
+DataOverlayLabel  
+FullSceneParamEval 0
+
+ViewMode 5
+ViewAimpoint 0.000000 2145.397461 -5276.001953
+ViewDirection -2.370157 0.197222 0.000000
+ViewZoomFactor 0.893059
+GridNumber 40
+GridSize 120.000000
+ShowMotionPath 1
+ShowBGImage 0
+ShowFogRadius 0
+ShowRedraw 0
+ShowSafeAreas 0
+ShowFieldChart 0
