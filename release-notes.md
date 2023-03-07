@@ -1,5 +1,35 @@
 # Release notes
 
+[v2.0 - 9.0.0.6]
+- All memory leaks where tracked down and killed! [:
+- Added Sequence support (animated texture map). Two restrictions however! There must be 4 digits in the sequence filenames and the first clip must be numbered 0001! FPS is fixed to 20.
+- Better automatic sizing,
+- Better Surface decoder requiring less memory while allowing upto 4096 surfaces per entity (:,
+- Corrected lotsa small bugs with GUI, implemented LOADER class system,
+- Removed an ugly bug in the new BoundingBox system that was a potential cause to total crash with many many scenes,
+- TAB toggles stats mode, F1 force use of Single-Texture rasterizer, F2 toggles free camera mode.
+
+[v2.0 - 9.0.0.5]
+- GUI is now using automatic scene sizing... This might cause problems with 16bit Zbuffer,
+- Added alternate rasterizer for 3d cards that do not support multitexturing,
+- Removed brute force resolving in Lightmap computing. Calculations now uses a wrecked BSP giving speed improvement ranging from 2x to 10x over brute force method,
+- Lightmaps are now optimized and stored at minimal A.R. possible,
+- Removed edge sharing artifacts in Lightmaps.
+
+[v2.0 - 9.0.0.3]
+- This is a WORK-IN-PROGRESS release,
+- Radiosity version handles shadows correctly! Even alpha textures are ok... Kweeel... [: But this is incredibly fucking slow as hell that sucks!!! (got it? (:)
+- Animated Light/Shadow maps,
+- nX can now compute Shadow-only maps. Much lighter they can be pretty bigger and make still available realtime lightning engine.
+
+[v2.0 - 9.0.0.1]
+- Major cleanup in code, classes only now...
+- Enhanced interface with a console output like Quake [;
+- RAYTRACED Lightmaps, supporting Alpha-Texture, Transparency to cast shadows and phong shaded lightmaps. Radiosity version is also working but not available since it do not handle shadows properly ))): and alpha textures definitively are a big problem when using radiosity.
+Lightmaps are perfectly UV-Mapped! (:
+
+-=- CHANGES FROM nXs3 TO nXng -=-
+
 - v1.7c:
 	- Added the EXTENDED SURFACE RENDERSTATES section to this doc,
 	- [ADDEVMAP] surface keyword added to allow COLORMAP + EVMAP to
