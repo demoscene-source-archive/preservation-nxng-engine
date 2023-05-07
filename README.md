@@ -40,11 +40,11 @@ It is pure software 3d-engine. Transformations/clippings/lightning are hand writ
 
 ### Legacy screenshots
 
-![](img/sct_frs.png)
+[![](img/sct_frs.png)](https://www.pouet.net/prod.php?which=8)
 ![](img/sct_jpn.png)<br>
 ![](img/sct_lgd.png)
 ![](img/sct_lm0.png)<br>
-![](img/night-tanks-preview.png)
+[![](img/night-tanks-preview.png)](https://www.youtube.com/watch?v=J8i3vpj0s1E)
 
 ## RULES AND THINGS TO KNOW
 
